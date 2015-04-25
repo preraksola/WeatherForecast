@@ -35,9 +35,6 @@ public class FetchForecastData extends AsyncTask <String, String, String> {
             return apiInteraction.APICallForForecast(params[0]);
         }
 
-        else if (mPreferences.contains(MainActivity.TODAY_DATA))
-            return mPreferences.getString(MainActivity.FORECAST_DATA, "");
-
         else
             return "Please connect to internet";
     }
@@ -46,7 +43,25 @@ public class FetchForecastData extends AsyncTask <String, String, String> {
     protected void onPostExecute(String json) {
 
         if(json.contains("Please connect"))
-            mForecastListFragment.errorRaised(2);
+        {
+            if (mPreferences.contains(MainActivity.FORECAST_DATA)) {
+
+                json = mPreferences.getString(MainActivity.FORECAST_DATA, "");
+                JSONObject data = null;
+                try {
+                    data = new JSONObject(json);
+                    ExtractForecastData efd = new ExtractForecastData(data, mContext);
+                    mForecastListFragment.loadData(efd.extractDataFromResponse());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                mForecastListFragment.errorRaised(2);
+            }
+            else
+            {
+                mForecastListFragment.errorRaised(4);
+            }
+        }
 
         else {
 

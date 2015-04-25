@@ -151,8 +151,8 @@ public class ForecastItemCustomAdapter extends ArrayAdapter<ForecastItemView> {
 
                     else
                     {
-                        //Drawable placeholder = imageView.getContext().getResources().getDrawable(R.drawable.placeholder);
-                        //imageView.setImageDrawable(placeholder);
+                        Drawable placeholder = imageView.getContext().getResources().getDrawable(R.mipmap.ic_forecast_background);
+                        imageView.setImageDrawable(placeholder);
                     }
                 }
             }

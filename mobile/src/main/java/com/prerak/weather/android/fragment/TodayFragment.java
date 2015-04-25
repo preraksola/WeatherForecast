@@ -144,8 +144,13 @@ public class TodayFragment extends Fragment {
             case 3:
                 message = "Unable to fetch your current location";
                 break;
+
+            case 4:
+                message = "No internet connectivity. Unable to fetch data";
+                break;
         }
         Toast.makeText(rootView.getContext(),message, Toast.LENGTH_LONG).show();
+        mFetchingData.clearAnimation();
         mFetchingData.setVisibility(View.INVISIBLE);
         //mRootView.mLineView.setVisibility(View.INVISIBLE);
     }
@@ -168,8 +173,10 @@ public class TodayFragment extends Fragment {
             fi.execute(todayEntity.getImageCode());
         }
 
-        else
+        else {
             errorRaised(2);
+            mWeatherImage.setImageResource(R.mipmap.ic_forecast_background);
+        }
 
         mLocation.setText(todayEntity.getLocation() + ", " + todayEntity.getCountry());
         String unitTemp = mPreferences.getString(MainActivity.TEMP_UNIT, null);

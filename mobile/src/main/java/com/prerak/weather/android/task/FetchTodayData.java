@@ -37,9 +37,6 @@ public class FetchTodayData extends AsyncTask<String, String, String> {
             return apiInteraction.APICallForToday(params[0]);
         }
 
-        else if (mPreferences.contains(MainActivity.TODAY_DATA))
-            return mPreferences.getString(MainActivity.TODAY_DATA, "");
-
         else
             return "Please connect to internet";
     }
@@ -47,8 +44,22 @@ public class FetchTodayData extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String json) {
 
-        if(json.contains("Please connect") )
-            mTodayFragment.errorRaised(2);
+        if(json.contains("Please connect") ) {
+            if (mPreferences.contains(MainActivity.TODAY_DATA)) {
+                mTodayFragment.errorRaised(2);
+                json = mPreferences.getString(MainActivity.TODAY_DATA, "");
+                JSONObject data = null;
+                try {
+                    data = new JSONObject(json);
+                    ExtractTodayData etd = new ExtractTodayData(data, mContext);
+                    mTodayFragment.fetchedData(etd.fetchDataFromResponse());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                mTodayFragment.errorRaised(4);
+            }
+        }
 
         else {
             try

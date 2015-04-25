@@ -117,8 +117,17 @@ public class ForecastListFragment extends Fragment {
             case 2:
                 message = "No internet connection available. Showing last saved data.";
                 break;
+
+            case 3:
+                message = "Unable to fetch your current location";
+                break;
+
+            case 4:
+                message = "No internet connectivity. Unable to fetch data";
+                break;
         }
         Toast.makeText(mRootView.getContext(), message, Toast.LENGTH_LONG).show();
+        mFetchingData.clearAnimation();
         mFetchingData.setVisibility(View.INVISIBLE);
     }
 
