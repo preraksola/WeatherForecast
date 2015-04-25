@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="drawer_selectedBackground" type="color">#1f000000</item>
+    <item name="ab_background_color" type="color">#71C6FF</item>
+    <item name="listView_background" type="color">#ff5e8dff</item>
+    <item name="frame_background" type="color">#fdfffd</item>
+    <item name="textView_settings_title" type="color">#8e144a8e</item>
+    <item name="line_color" type="color">#58090811</item>
+    <item name="drawer_text_color" type="color">#ffffff</item>
+
+
+</resources>

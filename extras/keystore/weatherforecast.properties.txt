@@ -1,0 +1,3 @@
+keystore.store.password=P@ssw0rd
+keystore.key.alias=weatherforecast
+keystore.key.password=P@ssw0rd

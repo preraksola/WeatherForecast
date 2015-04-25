@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Theme.Weather" parent="Theme.AppCompat.Light.DarkActionBar">
+      <!--  <item name="android:actionBarStyle">@style/MyActionBar</item> -->
+        <item name="android:background">@drawable/selector_activated_drawer_background</item>
+    </style>
+<!--
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/ab_color</item>
+    </style>
+-->
+</resources>
